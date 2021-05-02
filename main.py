@@ -9,33 +9,6 @@ from algorithms.bogo_sort import bogo_sort
 from algorithms.bubble_sort import bubble_sort
 from algorithms.quick_sort import quick_sort
 
-def generate_UI():
-    # GUI
-    UI_frame = Frame(window, width=1920, height=1080, bg=BLACK)
-    UI_frame.grid(row=0, column=0, padx=10, pady=5)
-
-    l1 = Label(UI_frame, text="Sorterings algoritm: ", bg=LIGHT_GRAY)
-    l1.grid(row=0, column=0, padx=10, pady=5)
-    menu = ttk.Combobox(UI_frame, textvariable=algo_choice, values=algoritms)
-    menu.grid(row=0, column=1, padx=5, pady=5)
-    menu.current(0)
-
-
-    l2 = Label(UI_frame, text="Sorterings hastighet: ", bg=LIGHT_GRAY)
-    l2.grid(row=1, column=0, padx=10, pady=5, sticky=W)
-    speed = ttk.Combobox(UI_frame, textvariable=algo_speed, values=speeds)
-    speed.grid(row=1, column=1, padx=5, pady=5)
-    speed.current(0)
-
-    sort_button = Button(UI_frame, text="Sortera: ", command=sort, bg=LIGHT_GREEN)
-    sort_button.grid(row=2, column=1, padx=5, pady=5)
-
-    array_button = Button(UI_frame, text="Generera array: ", command=generate, bg=LIGHT_GREEN)
-    array_button.grid(row=2, column=0, padx=5, pady=5)
-
-    canvas = Canvas(window, width=1900, height=1080, bg=BLACK)
-    canvas.grid(row=1,column=0, padx=10, pady=5)
-
 
 window = Tk()
 window.title("Sorterings algoritmer.")
@@ -48,7 +21,6 @@ algo_choice=StringVar()
 algo_speed =StringVar()
 
 data = []
-generate_UI()
 
 def drawBars(to_sort, colors_list):
     canvas.delete("all")
@@ -65,7 +37,6 @@ def drawBars(to_sort, colors_list):
         x1 = (i + 1) * x_width + offset
         y1 = canvas_height
         canvas.create_rectangle(x0, y0, x1, y1, fill=colors_list[i])
-    
     window.update_idletasks()
 
 def generate():
@@ -106,3 +77,32 @@ def sort():
 
     elif menu.get() == 'quick_sort':
         quick_sort(data, 0, len(data)-1, drawBars, timer)
+
+
+# GUI
+UI_frame = Frame(window, width=1920, height=1080, bg=BLACK)
+UI_frame.grid(row=0, column=0, padx=10, pady=5)
+
+l1 = Label(UI_frame, text="Sorterings algoritm: ", bg=LIGHT_GRAY)
+l1.grid(row=0, column=0, padx=10, pady=5)
+menu = ttk.Combobox(UI_frame, textvariable=algo_choice, values=algoritms)
+menu.grid(row=0, column=1, padx=5, pady=5)
+menu.current(0)
+
+
+l2 = Label(UI_frame, text="Sorterings hastighet: ", bg=LIGHT_GRAY)
+l2.grid(row=1, column=0, padx=10, pady=5, sticky=W)
+speed = ttk.Combobox(UI_frame, textvariable=algo_speed, values=speeds)
+speed.grid(row=1, column=1, padx=5, pady=5)
+speed.current(0)
+
+sort_button = Button(UI_frame, text="Sortera: ", command=sort, bg=LIGHT_GREEN)
+sort_button.grid(row=2, column=1, padx=5, pady=5)
+
+array_button = Button(UI_frame, text="Generera array: ", command=generate, bg=LIGHT_GREEN)
+array_button.grid(row=2, column=0, padx=5, pady=5)
+
+canvas = Canvas(window, width=1900, height=1080, bg=BLACK)
+canvas.grid(row=1,column=0, padx=10, pady=5)
+
+window.mainloop()
