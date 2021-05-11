@@ -8,6 +8,7 @@ from algorithms.insertion_sort import insertion_sort
 from algorithms.bogo_sort import bogo_sort
 from algorithms.bubble_sort import bubble_sort
 from algorithms.quick_sort import quick_sort
+from algorithms.merge_sort import merge_sort
 
 
 window = Tk()
@@ -15,7 +16,7 @@ window.title("Sorterings algoritmer.")
 window.maxsize(2000,1100)
 window.config(bg=BLACK)
 
-algoritms = ['bogo_sort', 'bubble_sort', 'insertion_sort', 'quick_sort']
+algoritms = ['bogo_sort', 'bubble_sort', 'insertion_sort', 'quick_sort', 'merge_sort']
 speeds    = ['Långsamt', 'Medium', 'Snabbt', 'SONIIIIC']
 algo_choice=StringVar()
 algo_speed =StringVar()
@@ -77,6 +78,9 @@ def sort():
 
     elif menu.get() == 'quick_sort':
         quick_sort(data, 0, len(data)-1, drawBars, timer)
+
+    elif menu.get() == 'merge_sort':
+        merge_sort(data, 0, len(data)-1, drawBars, timer)
 
 
 # GUI
